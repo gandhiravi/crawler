@@ -1,0 +1,33 @@
+Configutation:
+  name: Crawler-Log4j2
+  
+  Properties:
+    Property:
+      name: log-path
+      value: "c://TEMP/"
+  
+  Appenders:
+    Console:
+      name: Console_Appender
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+    File:
+      name: File_Appender
+      fileName: ${log-path}/crawler-log.log
+      PatternLayout:
+        pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+
+
+  Loggers:
+      Root:
+        level: debug
+        AppenderRef:
+          - ref: Console_Appender
+
+      Logger:
+        - name: com.gandhiravi.crawler
+          level: debug
+          AppenderRef:
+            - ref: File_Appender
+              level: debug
